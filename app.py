@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
-
+import sklearn
 st.set_page_config(page_title="Employee Salary Estimator", page_icon="💵", layout="centered")
 st.write(f"Deployed scikit-learn version: {sklearn.__version__}")
 # Header and Description

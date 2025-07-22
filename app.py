@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 st.set_page_config(page_title="Employee Salary Estimator", page_icon="💵", layout="centered")
-
+st.write(f"Deployed scikit-learn version: {sklearn.__version__}")
 # Header and Description
 st.markdown("<style>h1{color:#00aaff;}</style>", unsafe_allow_html=True)
 st.title("💵 Employee Salary Estimator")

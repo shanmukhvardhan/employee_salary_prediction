@@ -46,7 +46,7 @@ with st.form("prediction_form"):
              model = joblib.load("final_salary_model.pkl")
              predicted_salary = model.predict(input_df)[0]
              with st.spinner("Calculating..."):
-             st.success(f"🏆 Estimated Monthly Salary: ${predicted_salary:,.0f}")
+                  st.success(f"🏆 Estimated Monthly Salary: ${predicted_salary:,.0f}")
 
 # Batch prediction section
 st.markdown("---")

@@ -11,7 +11,7 @@ st.subheader("A modern, AI-powered salary forecast app")
 
 # Sidebar with user instructions
 with st.sidebar:
-    st.image("logo.png", width=140)  # (Replace with your logo)
+    st.image("logo.png", width=140)  
     st.markdown("### Welcome!")
     st.info("Fill in details to estimate your predicted salary. Try different combinations or upload a CSV for batch predictions.")
 
@@ -20,7 +20,7 @@ with st.form("prediction_form"):
     st.markdown("#### Enter Employee Details")
     col1, col2 = st.columns(2)
     with col1:
-        age = st.slider("Age", 18, 70, 30, help="Enter the employee's age")
+        age = st.slider("Age", 20, 70, 30, help="Enter the employee's age")
         exp = st.slider("Years of Experience", 0, 50, 5, help="Total professional experience")
         education = st.selectbox("Education", ["Bachelor", "Master", "PhD"])
         gender = st.radio("Gender", ["Male", "Female"])
@@ -40,10 +40,13 @@ with st.form("prediction_form"):
             "Gender": [gender],
             "Location": [location]
         })
-        model = joblib.load("final_salary_model.pkl")
-        predicted_salary = model.predict(input_df)[0]
-        with st.spinner("Calculating..."):
-            st.success(f"🏆 Estimated Monthly Salary: ${predicted_salary:,.0f}")
+        if exp > age - 15:  # assuming minimum working age is 15
+             st.error("Experience cannot be greater than (Age - 15). Please check your input.")
+        else:
+             model = joblib.load("final_salary_model.pkl")
+             predicted_salary = model.predict(input_df)[0]
+             with st.spinner("Calculating..."):
+             st.success(f"🏆 Estimated Monthly Salary: ${predicted_salary:,.0f}")
 
 # Batch prediction section
 st.markdown("---")
